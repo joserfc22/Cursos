@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | Cursos Hospital Ruy Azeredo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body class="dashboard-body">
+  <main class="dashboard-shell">
+    <header class="dashboard-header">
+      <div class="dashboard-header-copy">
+        <span class="dashboard-kicker">Painel visual de edicao</span>
+        <h1>Dashboard do Site de Cursos</h1>
+        <p>Edite titulos, contato, cards, links e chamadas do site sem mexer manualmente no codigo. Quando terminar, o painel tenta atualizar o <strong>index.html</strong> existente para aplicar as alteracoes.</p>
+      </div>
+      <div class="dashboard-actions">
+        <a class="dashboard-button ghost" href="index.html" target="_blank" rel="noopener noreferrer">Abrir site</a>
+        <button class="dashboard-button secondary" id="reset-button" type="button">Recarregar index.html</button>
+        <button class="dashboard-button secondary" id="save-draft-button" type="button">Salvar rascunho</button>
+        <button class="dashboard-button primary" id="save-button" type="button">Atualizar index.html</button>
+      </div>
+    </header>
+
+    <section class="dashboard-command">
+      <div class="dashboard-guide-card">
+        <span class="dashboard-kicker">Fluxo recomendado</span>
+        <h2>Atualize o site em 4 passos</h2>
+        <p>O painel agora esta organizado como uma sequencia simples: comece pelo topo, revise os textos, ajuste os cards e finalize com contato e rodape.</p>
+        <div class="dashboard-step-list">
+          <article class="dashboard-step">
+            <strong>1. Ajuste o topo e o hero</strong>
+            <span>Revise endereco, botoes e chamada principal.</span>
+          </article>
+          <article class="dashboard-step">
+            <strong>2. Revise os textos das secoes</strong>
+            <span>Garanta que os titulos estejam claros e consistentes.</span>
+          </article>
+          <article class="dashboard-step">
+            <strong>3. Organize cursos e diferenciais</strong>
+            <span>Edite cards, ordem de exibicao e blocos institucionais.</span>
+          </article>
+          <article class="dashboard-step">
+            <strong>4. Feche com contato e salvamento</strong>
+            <span>Confira rodape, WhatsApp e gere o novo arquivo.</span>
+          </article>
+        </div>
+      </div>
+      <aside class="dashboard-focus-card">
+        <span class="dashboard-kicker">Contexto ao vivo</span>
+        <div class="dashboard-focus-block">
+          <span class="focus-label">Secao atual</span>
+          <strong id="current-section-name">Informacoes gerais</strong>
+          <p id="current-section-description">Controle os dados de topo, hero e botoes principais.</p>
+        </div>
+        <div class="dashboard-focus-meta">
+          <div>
+            <span class="focus-label">Alteracoes</span>
+            <strong id="save-state-label">Tudo salvo</strong>
+          </div>
+          <div>
+            <span class="focus-label">Cards visiveis</span>
+            <strong id="cards-visible-count">0</strong>
+          </div>
+        </div>
+        <div class="dashboard-tip">
+          <strong>Atalho mental</strong>
+          <p>Se estiver na duvida, siga a navegacao abaixo de cima para baixo e salve um rascunho antes do arquivo final.</p>
+        </div>
+      </aside>
+    </section>
+
+    <nav class="dashboard-quicknav" aria-label="Navegacao rapida do dashboard">
+      <a href="#section-general" class="is-active" data-section-link="section-general" data-theme="general">
+        <span>Geral</span>
+        <small>Topo e hero</small>
+      </a>
+      <a href="#section-texts" data-section-link="section-texts" data-theme="texts">
+        <span>Textos</span>
+        <small>Titulos e subtitulos</small>
+      </a>
+      <a href="#section-cards" data-section-link="section-cards" data-theme="cards">
+        <span>Cards</span>
+        <small id="quicknav-cards-count">0 cursos</small>
+      </a>
+      <a href="#section-differentials" data-section-link="section-differentials" data-theme="differentials">
+        <span>Diferenciais</span>
+        <small id="quicknav-differentials-count">0 blocos</small>
+      </a>
+      <a href="#section-footer" data-section-link="section-footer" data-theme="footer">
+        <span>Contato</span>
+        <small>CTA e rodape</small>
+      </a>
+      <a href="index.html" target="_blank" rel="noopener noreferrer">
+        <span>Ver site</span>
+        <small>Abrir em nova aba</small>
+      </a>
+    </nav>
+
+    <div class="dashboard-status info" id="dashboard-status"></div>
+
+    <section class="dashboard-section dashboard-summary">
+      <div class="dashboard-section-head">
+        <div>
+          <h2>Resumo rapido</h2>
+          <p>Uma visao geral do que esta configurado no site neste momento.</p>
+        </div>
+      </div>
+      <div class="summary-grid">
+        <article class="summary-card">
+          <span class="summary-label">Cursos ativos</span>
+          <strong id="summary-cards-count">0</strong>
+          <p>Quantidade de cards que aparecem no site.</p>
+        </article>
+        <article class="summary-card">
+          <span class="summary-label">Diferenciais</span>
+          <strong id="summary-differentials-count">0</strong>
+          <p>Blocos institucionais ativos na secao de diferenciais.</p>
+        </article>
+        <article class="summary-card">
+          <span class="summary-label">CTA do menu</span>
+          <strong id="summary-nav-text">-</strong>
+          <p>Texto atual do botao principal do menu.</p>
+        </article>
+        <article class="summary-card">
+          <span class="summary-label">Hero</span>
+          <strong id="summary-hero-badge">-</strong>
+          <p>Badge atual da abertura do site.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="dashboard-section" id="section-general" data-theme="general" data-section-title="Informacoes gerais" data-section-description="Controle os dados de topo, hero e botoes principais.">
+      <div class="dashboard-section-head">
+        <div>
+          <span class="section-eyebrow">Passo 1</span>
+          <h2>Informacoes gerais</h2>
+          <p>Controle os dados de topo, hero e botoes principais.</p>
+        </div>
+        <button class="section-toggle" type="button" data-target="section-general">Recolher</button>
+      </div>
+      <div class="dashboard-section-body">
+        <div class="dashboard-group-grid">
+          <section class="dashboard-group-card">
+            <div class="dashboard-group-head">
+              <h3>Barra superior</h3>
+              <p>Esses dados aparecem antes do menu principal.</p>
+            </div>
+            <div class="dashboard-grid">
+              <label class="dashboard-field full">
+                <span>Endereco do topo</span>
+                <input id="topbar-address" type="text" placeholder="Ex.: Rua X, Setor Y - Goiania">
+                <small class="dashboard-hint">Use um endereco curto para manter a leitura leve.</small>
+              </label>
+              <label class="dashboard-field">
+                <span>Telefone do topo</span>
+                <input id="topbar-phone-text-field" type="text" placeholder="Ex.: (62) 3093-1111">
+              </label>
+              <label class="dashboard-field">
+                <span>Link do telefone</span>
+                <input id="topbar-phone-href" type="text" placeholder="tel:+556230931111">
+                <small class="dashboard-hint">Prefira o formato <strong>tel:</strong> para clique no celular.</small>
+              </label>
+              <label class="dashboard-field">
+                <span>Texto do WhatsApp do topo</span>
+                <input id="topbar-whatsapp-text-field" type="text" placeholder="Ex.: WhatsApp">
+              </label>
+              <label class="dashboard-field">
+                <span>Link do WhatsApp do topo</span>
+                <input id="topbar-whatsapp-href" type="text" placeholder="https://wa.me/...">
+              </label>
+            </div>
+          </section>
+
+          <section class="dashboard-group-card">
+            <div class="dashboard-group-head">
+              <h3>Botao do menu</h3>
+              <p>Principal chamada de acao visivel no topo do site.</p>
+            </div>
+            <div class="dashboard-grid">
+              <label class="dashboard-field">
+                <span>Texto do botao do menu</span>
+                <input id="nav-button-text" type="text" placeholder="Ex.: Matricule-se agora">
+              </label>
+              <label class="dashboard-field">
+                <span>Link do botao do menu</span>
+                <input id="nav-button-href" type="text" placeholder="#contato ou https://...">
+              </label>
+            </div>
+          </section>
+
+          <section class="dashboard-group-card">
+            <div class="dashboard-group-head">
+              <h3>Hero principal</h3>
+              <p>Aqui fica a mensagem mais importante da pagina inicial.</p>
+            </div>
+            <div class="dashboard-grid">
+              <label class="dashboard-field">
+                <span>Badge do hero</span>
+                <input id="hero-badge-field" type="text" placeholder="Ex.: Capacite sua equipe">
+              </label>
+              <label class="dashboard-field">
+                <span>Texto do botao do hero</span>
+                <input id="hero-button-text" type="text" placeholder="Ex.: Quero saber mais">
+              </label>
+              <label class="dashboard-field full">
+                <span>Titulo principal do hero</span>
+                <input id="hero-title-field" type="text" placeholder="Titulo principal que aparece em destaque">
+              </label>
+              <label class="dashboard-field full">
+                <span>Subtitulo do hero</span>
+                <textarea id="hero-subtitle-field" placeholder="Explique em poucas linhas o principal valor dos cursos."></textarea>
+                <small class="dashboard-hint">Priorize uma mensagem curta, clara e direta.</small>
+              </label>
+              <label class="dashboard-field">
+                <span>Link do botao do hero</span>
+                <input id="hero-button-href" type="text" placeholder="#cursos ou https://...">
+              </label>
+            </div>
+          </section>
+
+          <section class="dashboard-group-card">
+            <div class="dashboard-group-head">
+              <h3>Painel lateral do hero</h3>
+              <p>Lista rapida de motivos ou beneficios mostrados na abertura.</p>
+            </div>
+            <div class="dashboard-grid">
+              <label class="dashboard-field">
+                <span>Titulo do painel lateral</span>
+                <input id="hero-reasons-title" type="text" placeholder="Ex.: Por que escolher nossos cursos">
+              </label>
+              <label class="dashboard-field full">
+                <span>Itens do painel lateral, uma linha por item</span>
+                <textarea id="hero-reasons-field" placeholder="Um beneficio por linha"></textarea>
+                <small class="dashboard-hint">Cada linha vira um item separado no site.</small>
+              </label>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="dashboard-section" id="section-texts" data-theme="texts" data-section-title="Textos das secoes" data-section-description="Edite os titulos e subtitulos que aparecem nas areas principais do site.">
+      <div class="dashboard-section-head">
+        <div>
+          <span class="section-eyebrow">Passo 2</span>
+          <h2>Textos das secoes</h2>
+          <p>Edite os titulos e subtitulos que aparecem nas areas principais do site.</p>
+        </div>
+        <button class="section-toggle" type="button" data-target="section-texts">Recolher</button>
+      </div>
+      <div class="dashboard-section-body">
+        <div class="dashboard-group-grid dashboard-group-grid--two">
+          <section class="dashboard-group-card">
+            <div class="dashboard-group-head">
+              <h3>Secao de cursos</h3>
+              <p>Apresenta a vitrine principal dos cursos ofertados.</p>
+            </div>
+            <div class="dashboard-grid">
+              <label class="dashboard-field">
+                <span>Label da secao de cursos</span>
+                <input id="courses-label-field" type="text" placeholder="Ex.: Formacao e atualizacao">
+              </label>
+              <label class="dashboard-field">
+                <span>Titulo da secao de cursos</span>
+                <input id="courses-title-field" type="text" placeholder="Titulo da vitrine de cursos">
+              </label>
+              <label class="dashboard-field full">
+                <span>Subtitulo da secao de cursos</span>
+                <textarea id="courses-subtitle-field" placeholder="Texto curto que contextualiza os cursos."></textarea>
+              </label>
+            </div>
+          </section>
+
+          <section class="dashboard-group-card">
+            <div class="dashboard-group-head">
+              <h3>Secao de diferenciais</h3>
+              <p>Ajuda a reforcar confianca e posicionamento institucional.</p>
+            </div>
+            <div class="dashboard-grid">
+              <label class="dashboard-field">
+                <span>Label da secao de diferenciais</span>
+                <input id="differentials-label-field" type="text" placeholder="Ex.: Nossa estrutura">
+              </label>
+              <label class="dashboard-field">
+                <span>Titulo da secao de diferenciais</span>
+                <input id="differentials-title-field" type="text" placeholder="Titulo que valoriza a instituicao">
+              </label>
+              <label class="dashboard-field full">
+                <span>Subtitulo da secao de diferenciais</span>
+                <textarea id="differentials-subtitle-field" placeholder="Resumo institucional em poucas linhas."></textarea>
+              </label>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="dashboard-section" id="section-cards" data-theme="cards" data-section-title="Cards dos cursos" data-section-description="Adicione, remova e reorganize os cards. Aqui voce consegue editar datas, links, textos e imagens.">
+      <div class="dashboard-section-head">
+        <div>
+          <span class="section-eyebrow">Passo 3</span>
+          <h2>Cards dos cursos</h2>
+          <p>Adicione, remova e reorganize os cards. Aqui voce consegue editar datas, links, textos e imagens.</p>
+        </div>
+        <div class="dashboard-inline-actions">
+          <button class="section-toggle" type="button" data-target="section-cards">Recolher</button>
+          <button class="dashboard-button secondary" id="add-card-button" type="button">Adicionar card</button>
+        </div>
+      </div>
+      <div class="dashboard-section-body">
+        <div class="dashboard-tools">
+          <label class="dashboard-search">
+            <span>Buscar card</span>
+            <input id="card-search" type="text" placeholder="Digite titulo, tag ou informacao...">
+          </label>
+          <div class="dashboard-search-feedback">
+            <strong id="card-search-result">Exibindo 0 cards</strong>
+            <p>Use a busca para encontrar um curso rapidamente enquanto edita.</p>
+          </div>
+        </div>
+        <div class="dashboard-live-preview">
+          <div>
+            <h3>Previa ao vivo dos cards</h3>
+            <p>Conforme voce digita, esta area mostra como os cursos estao ficando.</p>
+          </div>
+          <div class="preview-cards" id="cards-preview"></div>
+        </div>
+        <div class="dashboard-list" id="cards-editor"></div>
+      </div>
+    </section>
+
+    <section class="dashboard-section" id="section-differentials" data-theme="differentials" data-section-title="Diferenciais" data-section-description="Atualize os blocos institucionais exibidos abaixo dos cursos.">
+      <div class="dashboard-section-head">
+        <div>
+          <span class="section-eyebrow">Passo 3</span>
+          <h2>Diferenciais</h2>
+          <p>Atualize os blocos institucionais exibidos abaixo dos cursos.</p>
+        </div>
+        <div class="dashboard-inline-actions">
+          <button class="section-toggle" type="button" data-target="section-differentials">Recolher</button>
+          <button class="dashboard-button secondary" id="add-differential-button" type="button">Adicionar diferencial</button>
+        </div>
+      </div>
+      <div class="dashboard-section-body">
+        <div class="dashboard-section-tip">
+          <strong>Dica</strong>
+          <p>Pense nesses blocos como argumentos de confianca: estrutura, equipe, metodologia e resultados.</p>
+        </div>
+        <div class="dashboard-list" id="differentials-editor"></div>
+      </div>
+    </section>
+
+    <section class="dashboard-section" id="section-footer" data-theme="footer" data-section-title="Contato e rodape" data-section-description="Controle a chamada final e os dados exibidos no rodape.">
+      <div class="dashboard-section-head">
+        <div>
+          <span class="section-eyebrow">Passo 4</span>
+          <h2>Contato e rodape</h2>
+          <p>Controle a chamada final e os dados exibidos no rodape.</p>
+        </div>
+        <button class="section-toggle" type="button" data-target="section-footer">Recolher</button>
+      </div>
+      <div class="dashboard-section-body">
+        <div class="dashboard-group-grid dashboard-group-grid--two">
+          <section class="dashboard-group-card">
+            <div class="dashboard-group-head">
+              <h3>Chamada final</h3>
+              <p>Parte usada para incentivar contato via WhatsApp ou telefone.</p>
+            </div>
+            <div class="dashboard-grid">
+              <label class="dashboard-field full">
+                <span>Titulo do bloco de contato</span>
+                <input id="cta-title-field" type="text" placeholder="Titulo forte para a chamada final">
+              </label>
+              <label class="dashboard-field full">
+                <span>Texto do bloco de contato</span>
+                <textarea id="cta-text-field" placeholder="Explique em poucas linhas por que entrar em contato agora."></textarea>
+              </label>
+              <label class="dashboard-field">
+                <span>Texto do botao de WhatsApp</span>
+                <input id="cta-whatsapp-text-field" type="text" placeholder="Ex.: Chamar no WhatsApp">
+              </label>
+              <label class="dashboard-field">
+                <span>Link do botao de WhatsApp</span>
+                <input id="cta-whatsapp-href" type="text" placeholder="https://wa.me/...">
+              </label>
+              <label class="dashboard-field">
+                <span>Texto do botao de telefone</span>
+                <input id="cta-phone-text-field" type="text" placeholder="Ex.: Ligar agora">
+              </label>
+              <label class="dashboard-field">
+                <span>Link do botao de telefone</span>
+                <input id="cta-phone-href" type="text" placeholder="tel:+55...">
+              </label>
+            </div>
+          </section>
+
+          <section class="dashboard-group-card">
+            <div class="dashboard-group-head">
+              <h3>Dados do rodape</h3>
+              <p>Informacoes de apoio que aparecem no final da pagina.</p>
+            </div>
+            <div class="dashboard-grid">
+              <label class="dashboard-field full">
+                <span>Descricao do rodape</span>
+                <textarea id="footer-description-field" placeholder="Resumo institucional exibido no rodape."></textarea>
+              </label>
+              <label class="dashboard-field">
+                <span>Texto do telefone do rodape</span>
+                <input id="footer-phone-text-field" type="text" placeholder="Ex.: (62) 3093-1111">
+              </label>
+              <label class="dashboard-field">
+                <span>Link do telefone do rodape</span>
+                <input id="footer-phone-href" type="text" placeholder="tel:+5562...">
+              </label>
+              <label class="dashboard-field">
+                <span>Texto do WhatsApp do rodape</span>
+                <input id="footer-whatsapp-text-field" type="text" placeholder="Ex.: (62) 99999-9999">
+              </label>
+              <label class="dashboard-field">
+                <span>Link do WhatsApp do rodape</span>
+                <input id="footer-whatsapp-href" type="text" placeholder="https://wa.me/...">
+              </label>
+              <label class="dashboard-field full">
+                <span>Endereco do rodape</span>
+                <input id="footer-address-field" type="text" placeholder="Endereco completo exibido no rodape">
+              </label>
+            </div>
+          </section>
+        </div>
+        <p class="dashboard-note">Salvar rascunho guarda as alteracoes so neste navegador. Ao clicar em atualizar, o painel tenta sobrescrever o <strong>index.html</strong> existente. Na primeira vez, o navegador pode pedir para voce selecionar esse arquivo. Se o navegador nao permitir escrita direta, ele baixa um novo <strong>index.html</strong> como alternativa.</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="site-data.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>

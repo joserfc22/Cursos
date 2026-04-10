@@ -1,0 +1,135 @@
+{
+  "topbar": {
+    "address": "R. Paissandu, 220 - Ipiranga, Goiania - GO",
+    "phoneText": "(62) 99904-0297",
+    "phoneHref": "tel:+5562999040297",
+    "whatsappText": "WhatsApp",
+    "whatsappHref": "https://api.whatsapp.com/send?phone=5562999040297"
+  },
+  "nav": {
+    "buttonText": "Quero me inscrever",
+    "buttonHref": "#contato"
+  },
+  "hero": {
+    "badge": "Instituto de Ensino Ruy Azeredo",
+    "title": "Cursos com teoria e pratica para medicos e academicos de medicina.",
+    "subtitle": "Treinamentos pensados para ampliar conhecimentos com vivencia pratica, acompanhamento proximo e estrutura preparada para aulas aplicadas.",
+    "alertText": "Vagas limitadas. Reserve seu lugar e amplie seus conhecimentos com palestrantes de referencia em Goias.",
+    "reasonsTitle": "O que voce encontra aqui",
+    "reasons": [
+      "Conteudo com teoria e pratica para ampliar seus conhecimentos.",
+      "Aulas praticas realizadas em ambiente preparado, conforme o curso.",
+      "Certificacao presencial com destaque institucional no auditorio HRA."
+    ],
+    "primaryButtonText": "Ver cursos e valores",
+    "primaryButtonHref": "#turmas"
+  },
+  "sections": {
+    "coursesLabel": "Cursos em destaque",
+    "coursesTitle": "Turmas e valores",
+    "coursesSubtitle": "Confira os cursos solicitados, com informacoes de valor, formato e publico indicado.",
+    "differentialsLabel": "Diferenciais",
+    "differentialsTitle": "Aprendizado com foco pratico",
+    "differentialsSubtitle": "Os cursos combinam acompanhamento, aplicacao pratica e contato direto para quem deseja evoluir com mais seguranca."
+  },
+  "cards": [
+    {
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVaHandJkje5urzw1aC5ku_hCu_QLWN52Hqw&s",
+      "imageAlt": "Curso Botox Medico",
+      "tag": "Teoria e pratica",
+      "title": "Curso Botox Medico",
+      "primaryIcon": "value",
+      "primaryInfo": "Medicos: R$ 1.500 | Academicos de medicina: R$ 1.000",
+      "secondaryInfo": "Instituto de Ensino Ruy Azeredo",
+      "buttonText": "Fazer minha inscricao",
+      "buttonHref": "payment.html?curso=curso-botox-medico",
+      "infoText": "Informacoes do curso",
+      "infoHref": "payment.html?curso=curso-botox-medico"
+    },
+    {
+      "image": "https://static.wixstatic.com/media/428bd1_5d111414ddd5417db6fb870f65f85735~mv2.avif",
+      "imageAlt": "Acesso Venoso Central Guiado por Ultrassom",
+      "tag": "Teoria e pratica",
+      "title": "Acesso Venoso Central Guiado por Ultrassom",
+      "primaryIcon": "value",
+      "primaryInfo": "Valor: R$ 1.399",
+      "secondaryInfo": "Instituto de Ensino Ruy Azeredo",
+      "buttonText": "Fazer minha inscricao",
+      "buttonHref": "payment.html?curso=acesso-venoso-central-guiado-por-ultrassom",
+      "infoText": "Informacoes do curso",
+      "infoHref": "payment.html?curso=acesso-venoso-central-guiado-por-ultrassom"
+    },
+    {
+      "image": "https://static.wixstatic.com/media/428bd1_9a1489bc38a04292a713a0c24bb97501~mv2.jpg",
+      "imageAlt": "Dreno Toracico e Acesso Venoso Central",
+      "tag": "Aula pratica",
+      "title": "Dreno Toracico e Acesso Venoso Central",
+      "primaryIcon": "value",
+      "primaryInfo": "Valor: R$ 1.590",
+      "secondaryInfo": "Aula pratica realizada no centro cirurgico",
+      "buttonText": "Fazer minha inscricao",
+      "buttonHref": "payment.html?curso=dreno-toracico-e-acesso-venoso-central",
+      "infoText": "Informacoes do curso",
+      "infoHref": "payment.html?curso=dreno-toracico-e-acesso-venoso-central"
+    }
+  ],
+  "differentials": [
+    {
+      "eyebrow": "Teoria e pratica",
+      "title": "Conteudo aplicado",
+      "text": "Turmas desenhadas para unir base tecnica, orientacao clara e execucao supervisionada."
+    },
+    {
+      "eyebrow": "Estrutura",
+      "title": "Ambiente preparado",
+      "text": "Aulas praticas realizadas em ambiente adequado, incluindo centro cirurgico quando previsto no curso."
+    },
+    {
+      "eyebrow": "Certificacao",
+      "title": "Reconhecimento presencial",
+      "text": "Formacao com destaque para a certificacao presencial em auditorio HRA."
+    }
+  ],
+  "payment": {
+    "label": "Pagamento e certificacao",
+    "title": "Escolha a melhor forma de confirmar sua vaga",
+    "subtitle": "Adicionamos uma area clara para pagamento e colocamos em destaque a certificacao presencial em auditorio HRA.",
+    "methods": [
+      {
+        "eyebrow": "Pix",
+        "title": "Pagamento rapido",
+        "text": "Ideal para confirmar a inscricao com agilidade e receber orientacoes logo em seguida."
+      },
+      {
+        "eyebrow": "Cartao de debito",
+        "title": "Confirmacao direta",
+        "text": "Opcao para pagamento a vista com praticidade no atendimento."
+      },
+      {
+        "eyebrow": "Cartao de credito",
+        "title": "Parcelamento em 2x",
+        "text": "Forma de pagamento em ate 2x para facilitar a confirmacao da vaga."
+      }
+    ],
+    "certificationTitle": "Certificacao presencial no auditorio HRA",
+    "certificationText": "Esse destaque reforca a experiencia presencial e o valor institucional do treinamento."
+  },
+  "cta": {
+    "title": "Quer reservar sua vaga ou tirar uma duvida?",
+    "text": "Fale com a equipe para confirmar disponibilidade e receber orientacao sobre o curso ideal para voce.",
+    "whatsappText": "WhatsApp (62) 99904-0297",
+    "whatsappHref": "https://api.whatsapp.com/send?phone=5562999040297",
+    "phoneText": "Ligar (62) 99904-0297",
+    "phoneHref": "tel:+5562999040297"
+  },
+  "footer": {
+    "description": "Instituto de ensino com cursos voltados para pratica medica, acompanhamento proximo e aprendizado aplicado.",
+    "emailPrimary": "institutodeensinoruyazeredo@gmail.com",
+    "emailSecondary": "",
+    "phoneText": "(62) 99904-0297",
+    "phoneHref": "tel:+5562999040297",
+    "whatsappText": "(62) 99904-0297",
+    "whatsappHref": "https://api.whatsapp.com/send?phone=5562999040297",
+    "address": "R. Paissandu, 220 - Ipiranga, Goiania"
+  }
+}

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cursos | Hospital Ruy Azeredo</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23c62839' d='M12 21s-6.7-4.4-9.2-8.3C.8 9.8 2 5.8 5.7 4.5c2.2-.8 4.5.1 6.3 2.3 1.8-2.2 4.1-3.1 6.3-2.3 3.7 1.3 4.9 5.3 2.9 8.2C18.7 16.6 12 21 12 21Z'/%3E%3C/svg%3E">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body id="top">
+  <div class="topbar">
+    <span class="topbar-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s7-6.2 7-11.2A7 7 0 0 0 5 9.8C5 14.8 12 21 12 21Z"></path><circle cx="12" cy="10" r="2.6"></circle></svg>
+      <span id="topbar-address-text">R. Paissandu, 220 - Ipiranga, Goiania - GO</span>
+    </span>
+    <div>
+      <a class="topbar-item" id="topbar-phone-link" href="tel:+5562999040297">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7l.5 3a2 2 0 0 1-.6 1.8L7.7 9.8a16 16 0 0 0 6.5 6.5l1.3-1.3a2 2 0 0 1 1.8-.6l3 .5A2 2 0 0 1 22 16.9Z"></path></svg>
+        <span id="topbar-phone-text">(62) 99904-0297</span>
+      </a>
+      <a class="topbar-item" id="topbar-whatsapp-link" href="https://api.whatsapp.com/send?phone=5562999040297">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 3.9A11 11 0 0 0 2.8 17.1L1.5 22.5l5.5-1.3A11 11 0 1 0 20 3.9Zm-8 16.2a9 9 0 0 1-4.6-1.3l-.3-.2-3.2.8.9-3.1-.2-.3A9 9 0 1 1 12 20.1Zm5-6.7c-.3-.2-1.8-.9-2.1-1s-.5-.2-.7.2-.8 1-1 1.1-.4.2-.7 0a7.4 7.4 0 0 1-2.2-1.3 8.4 8.4 0 0 1-1.6-2c-.2-.3 0-.5.1-.7l.5-.6c.1-.1.2-.3.3-.5a.6.6 0 0 0 0-.6c-.1-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6a1.1 1.1 0 0 0-.8.4 3.3 3.3 0 0 0-1 2.4c0 1.4 1 2.7 1.2 2.9.1.2 2 3 4.8 4.1 2.8 1.1 2.8.7 3.3.7.5 0 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.2-.3-.2-.6-.4Z"></path></svg>
+        <span id="topbar-whatsapp-text">WhatsApp</span>
+      </a>
+    </div>
+  </div>
+
+  <nav>
+    <a class="nav-logo" href="#top">
+      <div class="logo-icon">
+        <img src="logo.png" alt="Logo do Hospital Ruy Azeredo">
+      </div>
+      <div class="logo-text">
+        <strong>Hospital Ruy Azeredo</strong>
+        <span>Goiania - Goias</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#turmas" class="active">Cursos</a></li>
+      <li><a href="#diferenciais">Diferenciais</a></li>
+      <li><a href="#contato">Contato</a></li>
+      <li><a href="#contato" class="nav-btn" id="nav-cta-link"><span id="nav-cta-text">Quero me inscrever</span></a></li>
+    </ul>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="breadcrumb">
+        <a href="#top">Inicio</a>
+        <span>&gt;</span>
+        <span>Cursos</span>
+      </div>
+      <div class="hero-grid">
+        <div>
+          <div class="hero-badge">
+            <span class="badge-dot"></span>
+            <span id="hero-badge-text">Instituto de Ensino Ruy Azeredo</span>
+          </div>
+          <h1 id="hero-title">Cursos com teoria e pratica para medicos e academicos de medicina.</h1>
+          <p class="hero-sub" id="hero-subtitle">Treinamentos pensados para ampliar conhecimentos com vivencia pratica, acompanhamento proximo e estrutura preparada para aulas aplicadas.</p>
+          <p class="hero-alert" id="hero-alert-text">Vagas limitadas. Reserve seu lugar e amplie seus conhecimentos com palestrantes de referencia em Goias.</p>
+          <div class="hero-actions">
+            <a class="btn-primary" id="hero-primary-link" href="#turmas"><span id="hero-primary-text">Ver cursos e valores</span></a>
+          </div>
+          <div class="hero-stats" id="hero-stats">
+            <div>
+              <div class="stat-num">3</div>
+              <div class="stat-label">cursos em destaque</div>
+            </div>
+          </div>
+        </div>
+        <aside class="hero-panel">
+          <h3 id="hero-panel-title">O que voce encontra aqui</h3>
+          <ul id="hero-reasons">
+            <li>Conteudo com teoria e pratica para ampliar seus conhecimentos.</li>
+            <li>Aulas praticas realizadas em ambiente preparado, conforme o curso.</li>
+            <li>Certificacao presencial com destaque institucional no auditorio HRA.</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section" id="turmas">
+      <div class="section-label" id="courses-label">Cursos em destaque</div>
+      <h2 class="section-title" id="courses-title">Turmas e valores</h2>
+      <p class="section-sub" id="courses-subtitle">Confira os cursos solicitados, com informacoes de valor, formato e publico indicado.</p>
+
+      <div class="courses-grid" id="courses-grid">
+        <article class="card">
+          <div class="card-img">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVaHandJkje5urzw1aC5ku_hCu_QLWN52Hqw&amp;s" alt="Curso Botox Medico">
+            <span class="card-tag">Teoria e pratica</span>
+          </div>
+          <div class="card-body">
+            <p class="card-title">Curso Botox Medico</p>
+            <div class="card-meta">
+              <div class="meta-row">
+                <svg class="meta-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><path d="M12 7v10"></path><path d="M15 9.5c0-1.1-1.3-2-3-2s-3 .9-3 2 1.1 1.7 3 2c1.9.3 3 1 3 2.5s-1.3 2-3 2-3-.9-3-2"></path></svg>
+                Medicos: R$ 1.500 | Academicos de medicina: R$ 1.000
+              </div>
+              <div class="meta-row">
+                <svg class="meta-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"></path><circle cx="12" cy="9" r="2.5"></circle></svg>
+                Instituto de Ensino Ruy Azeredo
+              </div>
+            </div>
+            <div class="card-actions">
+              <a class="btn-inscricao" href="payment.html?curso=curso-botox-medico">Fazer minha inscricao</a>
+              <a class="btn-info-curso" href="payment.html?curso=curso-botox-medico">Informacoes do curso</a>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-img">
+            <img src="https://static.wixstatic.com/media/428bd1_5d111414ddd5417db6fb870f65f85735~mv2.avif" alt="Acesso Venoso Central Guiado por Ultrassom">
+            <span class="card-tag">Teoria e pratica</span>
+          </div>
+          <div class="card-body">
+            <p class="card-title">Acesso Venoso Central Guiado por Ultrassom</p>
+            <div class="card-meta">
+              <div class="meta-row">
+                <svg class="meta-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><path d="M12 7v10"></path><path d="M15 9.5c0-1.1-1.3-2-3-2s-3 .9-3 2 1.1 1.7 3 2c1.9.3 3 1 3 2.5s-1.3 2-3 2-3-.9-3-2"></path></svg>
+                Valor: R$ 1.399
+              </div>
+              <div class="meta-row">
+                <svg class="meta-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"></path><circle cx="12" cy="9" r="2.5"></circle></svg>
+                Instituto de Ensino Ruy Azeredo
+              </div>
+            </div>
+            <div class="card-actions">
+              <a class="btn-inscricao" href="payment.html?curso=acesso-venoso-central-guiado-por-ultrassom">Fazer minha inscricao</a>
+              <a class="btn-info-curso" href="payment.html?curso=acesso-venoso-central-guiado-por-ultrassom">Informacoes do curso</a>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-img">
+            <img src="https://static.wixstatic.com/media/428bd1_9a1489bc38a04292a713a0c24bb97501~mv2.jpg" alt="Dreno Toracico e Acesso Venoso Central">
+            <span class="card-tag">Aula pratica</span>
+          </div>
+          <div class="card-body">
+            <p class="card-title">Dreno Toracico e Acesso Venoso Central</p>
+            <div class="card-meta">
+              <div class="meta-row">
+                <svg class="meta-icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><path d="M12 7v10"></path><path d="M15 9.5c0-1.1-1.3-2-3-2s-3 .9-3 2 1.1 1.7 3 2c1.9.3 3 1 3 2.5s-1.3 2-3 2-3-.9-3-2"></path></svg>
+                Valor: R$ 1.590
+              </div>
+              <div class="meta-row">
+                <svg class="meta-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"></path><circle cx="12" cy="9" r="2.5"></circle></svg>
+                Aula pratica realizada no centro cirurgico
+              </div>
+            </div>
+            <div class="card-actions">
+              <a class="btn-inscricao" href="payment.html?curso=dreno-toracico-e-acesso-venoso-central">Fazer minha inscricao</a>
+              <a class="btn-info-curso" href="payment.html?curso=dreno-toracico-e-acesso-venoso-central">Informacoes do curso</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="diferenciais">
+      <div class="section-label" id="differentials-label">Diferenciais</div>
+      <h2 class="section-title" id="differentials-title">Aprendizado com foco pratico</h2>
+      <p class="section-sub" id="differentials-subtitle">Os cursos combinam acompanhamento, aplicacao pratica e contato direto para quem deseja evoluir com mais seguranca.</p>
+      <div class="info-grid" id="differentials-grid">
+        <article class="info-card">
+          <div class="eyebrow">Teoria e pratica</div>
+          <h3>Conteudo aplicado</h3>
+          <p>Turmas desenhadas para unir base tecnica, orientacao clara e execucao supervisionada.</p>
+        </article>
+        <article class="info-card">
+          <div class="eyebrow">Estrutura</div>
+          <h3>Ambiente preparado</h3>
+          <p>Aulas praticas realizadas em ambiente adequado, incluindo centro cirurgico quando previsto no curso.</p>
+        </article>
+        <article class="info-card">
+          <div class="eyebrow">Certificacao</div>
+          <h3>Reconhecimento presencial</h3>
+          <p>Formacao com destaque para a certificacao presencial em auditorio HRA.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <section class="cta-section" id="contato">
+    <div class="cta-inner">
+      <div class="cta-text">
+        <h3 id="cta-title">Quer reservar sua vaga ou tirar uma duvida?</h3>
+        <p id="cta-text">Fale com a equipe para confirmar disponibilidade e receber orientacao sobre o curso ideal para voce.</p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn-whatsapp" id="cta-whatsapp-link" href="https://api.whatsapp.com/send?phone=5562999040297"><span id="cta-whatsapp-text">WhatsApp (62) 99904-0297</span></a>
+        <a class="btn-phone" id="cta-phone-link" href="tel:+5562999040297"><span id="cta-phone-text">Ligar (62) 99904-0297</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo">
+          <div class="logo-icon" style="width:40px;height:40px;background:rgba(255,255,255,0.15);border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;">
+            <img src="logo.png" alt="Logo do Hospital Ruy Azeredo" style="width:100%;height:100%;object-fit:cover;display:block;">
+          </div>
+          <div class="logo-text">
+            <strong>Hospital Ruy Azeredo</strong>
+            <span>Goiania - Goias</span>
+          </div>
+        </div>
+        <p id="footer-description">Instituto de ensino com cursos voltados para pratica medica, acompanhamento proximo e aprendizado aplicado.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Menu</h4>
+        <ul>
+          <li><a href="#top">Inicio</a></li>
+          <li><a href="#turmas">Proximas turmas</a></li>
+          <li><a href="#diferenciais">Diferenciais</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <ul>
+          <li><a id="footer-phone-link" href="tel:+5562999040297"><span id="footer-phone-text">(62) 99904-0297</span></a></li>
+          <li><a id="footer-whatsapp-link" href="https://api.whatsapp.com/send?phone=5562999040297"><span id="footer-whatsapp-text">(62) 99904-0297</span></a></li>
+          <li><a href="#"><span id="footer-address-text">R. Paissandu, 220 - Ipiranga, Goiania</span></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy;2026 Hospital Ruy Azeredo. Todos os direitos reservados.</span>
+      <span>As informacoes do site nao substituem orientacao medica. <a href="#">Privacidade</a></span>
+    </div>
+  </footer>
+</body>
+</html>

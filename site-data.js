@@ -679,6 +679,7 @@
       '      <span>As informacoes do site nao substituem orientacao medica. <a href="#">Privacidade</a></span>',
       '    </div>',
       '  </footer>',
+      '  <script src="embed-navigation.js"></script>',
       '</body>',
       '</html>',
       ''

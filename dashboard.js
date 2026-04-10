@@ -129,6 +129,62 @@
     });
   }
 
+  function setSectionCollapsed(section, collapsed) {
+    var toggleButton;
+    if (!section) {
+      return;
+    }
+
+    section.classList.toggle('is-collapsed', !!collapsed);
+    toggleButton = document.querySelector('.section-toggle[data-target="' + section.id + '"]');
+
+    if (toggleButton) {
+      toggleButton.textContent = section.classList.contains('is-collapsed') ? 'Expandir' : 'Recolher';
+    }
+  }
+
+  function getScrollBehavior() {
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return 'auto';
+    }
+
+    return 'smooth';
+  }
+
+  function jumpToSection(sectionId, options) {
+    var settings = options || {};
+    var section = byId(sectionId);
+    var quicknav = document.querySelector('.dashboard-quicknav');
+    var offset = quicknav ? quicknav.offsetHeight + 26 : 26;
+    var top;
+
+    if (!section) {
+      return;
+    }
+
+    if (settings.expand !== false) {
+      setSectionCollapsed(section, false);
+    }
+
+    setCurrentSection(sectionId);
+
+    if (settings.scroll !== false) {
+      top = section.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({
+        top: Math.max(0, top),
+        behavior: getScrollBehavior()
+      });
+    }
+
+    if (settings.updateHash !== false) {
+      if (window.history && window.history.replaceState) {
+        window.history.replaceState(null, '', '#' + sectionId);
+      } else {
+        window.location.hash = sectionId;
+      }
+    }
+  }
+
   function markDirty() {
     isDirty = true;
     setSaveStateLabel('Alteracoes pendentes');
@@ -664,7 +720,7 @@
     renderCardsEditor();
     renderSummary();
     renderCardsPreview();
-    setCurrentSection('section-cards');
+    jumpToSection('section-cards', { scroll: false, updateHash: false });
     markDirty();
   });
 
@@ -673,7 +729,7 @@
     state.differentials.push(makeNewDifferential());
     renderDifferentialsEditor();
     renderSummary();
-    setCurrentSection('section-differentials');
+    jumpToSection('section-differentials', { scroll: false, updateHash: false });
     markDirty();
   });
 
@@ -700,7 +756,7 @@
     renderCardsEditor();
     renderSummary();
     renderCardsPreview();
-    setCurrentSection('section-cards');
+    jumpToSection('section-cards', { scroll: false, updateHash: false });
     markDirty();
   });
 
@@ -726,7 +782,7 @@
 
     renderDifferentialsEditor();
     renderSummary();
-    setCurrentSection('section-differentials');
+    jumpToSection('section-differentials', { scroll: false, updateHash: false });
     markDirty();
   });
 
@@ -752,9 +808,10 @@
   });
 
   document.querySelectorAll('[data-section-link]').forEach(function (link) {
-    link.addEventListener('click', function () {
+    link.addEventListener('click', function (event) {
       var targetId = link.getAttribute('data-section-link');
-      setCurrentSection(targetId);
+      event.preventDefault();
+      jumpToSection(targetId);
     });
   });
 
@@ -766,15 +823,20 @@
         return;
       }
 
-      section.classList.toggle('is-collapsed');
-      button.textContent = section.classList.contains('is-collapsed') ? 'Expandir' : 'Recolher';
+      setSectionCollapsed(section, !section.classList.contains('is-collapsed'));
     });
   });
 
   async function initialize() {
+    var initialHash = window.location.hash ? window.location.hash.slice(1) : '';
+
     state = await helpers.loadSiteData({ allowDraft: true });
     renderAll();
     initializeSectionObserver();
+
+    if (initialHash && byId(initialHash)) {
+      jumpToSection(initialHash, { scroll: false });
+    }
 
     if (helpers.getDraftSiteData()) {
       setSaveStateLabel('Rascunho carregado');

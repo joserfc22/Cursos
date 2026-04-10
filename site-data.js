@@ -8,7 +8,7 @@
       phoneText: '(62) 99904-0297',
       phoneHref: 'tel:+5562999040297',
       whatsappText: 'WhatsApp',
-      whatsappHref: 'https://api.whatsapp.com/send?phone=5562999040297'
+      whatsappHref: 'https://wa.me/5562999040297'
     },
     nav: {
       buttonText: 'Quero me inscrever',
@@ -122,7 +122,7 @@
       title: 'Quer reservar sua vaga ou tirar uma duvida?',
       text: 'Fale com a equipe para confirmar disponibilidade e receber orientacao sobre o curso ideal para voce.',
       whatsappText: 'WhatsApp (62) 99904-0297',
-      whatsappHref: 'https://api.whatsapp.com/send?phone=5562999040297',
+      whatsappHref: 'https://wa.me/5562999040297',
       phoneText: 'Ligar (62) 99904-0297',
       phoneHref: 'tel:+5562999040297'
     },
@@ -133,7 +133,7 @@
       phoneText: '(62) 99904-0297',
       phoneHref: 'tel:+5562999040297',
       whatsappText: '(62) 99904-0297',
-      whatsappHref: 'https://api.whatsapp.com/send?phone=5562999040297',
+      whatsappHref: 'https://wa.me/5562999040297',
       address: 'R. Paissandu, 220 - Ipiranga, Goiania'
     }
   };
@@ -166,12 +166,75 @@
     return output;
   }
 
-  function mergeWithDefaults(data) {
-    return mergeDeep(DEFAULT_SITE_DATA, data || {});
-  }
-
   function normalizeText(value) {
     return String(value || '').replace(/\s+/g, ' ').trim();
+  }
+
+  function normalizeDigits(value) {
+    return String(value || '').replace(/\D/g, '');
+  }
+
+  function normalizeWhatsAppHref(value) {
+    var raw = normalizeText(value);
+    var digits = '';
+    var url;
+
+    if (!raw) {
+      return '';
+    }
+
+    if (/^\+?[\d\s().-]+$/.test(raw)) {
+      digits = normalizeDigits(raw);
+      return digits ? 'https://wa.me/' + digits : '';
+    }
+
+    if (/^wa\.me\//i.test(raw)) {
+      raw = 'https://' + raw;
+    }
+
+    if (!/^https?:\/\//i.test(raw)) {
+      return raw;
+    }
+
+    try {
+      url = new window.URL(raw, window.location.href);
+    } catch (error) {
+      return raw;
+    }
+
+    if (/(\.|^)wa\.me$/i.test(url.hostname)) {
+      digits = normalizeDigits(url.pathname);
+      return digits ? 'https://wa.me/' + digits : raw;
+    }
+
+    if (/(\.|^)api\.whatsapp\.com$/i.test(url.hostname) || /(\.|^)web\.whatsapp\.com$/i.test(url.hostname)) {
+      digits = normalizeDigits(url.searchParams.get('phone') || url.pathname);
+      return digits ? 'https://wa.me/' + digits : raw;
+    }
+
+    return raw;
+  }
+
+  function normalizeSiteLinks(data) {
+    var site = deepClone(data || {});
+
+    if (site.topbar) {
+      site.topbar.whatsappHref = normalizeWhatsAppHref(site.topbar.whatsappHref);
+    }
+
+    if (site.cta) {
+      site.cta.whatsappHref = normalizeWhatsAppHref(site.cta.whatsappHref);
+    }
+
+    if (site.footer) {
+      site.footer.whatsappHref = normalizeWhatsAppHref(site.footer.whatsappHref);
+    }
+
+    return site;
+  }
+
+  function mergeWithDefaults(data) {
+    return normalizeSiteLinks(mergeDeep(DEFAULT_SITE_DATA, data || {}));
   }
 
   function buildNoCachePath(path) {
@@ -455,7 +518,7 @@
     }
 
     items.push('          <li><a id="footer-phone-link" href="' + escapeHtml(footer.phoneHref) + '"><span id="footer-phone-text">' + escapeHtml(footer.phoneText) + '</span></a></li>');
-    items.push('          <li><a id="footer-whatsapp-link" href="' + escapeHtml(footer.whatsappHref) + '"><span id="footer-whatsapp-text">' + escapeHtml(footer.whatsappText) + '</span></a></li>');
+    items.push('          <li><a id="footer-whatsapp-link" href="' + escapeHtml(normalizeWhatsAppHref(footer.whatsappHref)) + '" target="_blank" rel="noopener noreferrer"><span id="footer-whatsapp-text">' + escapeHtml(footer.whatsappText) + '</span></a></li>');
     items.push('          <li><a href="#"><span id="footer-address-text">' + escapeHtml(footer.address) + '</span></a></li>');
 
     return items.join('\n');
@@ -486,7 +549,7 @@
       '        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7l.5 3a2 2 0 0 1-.6 1.8L7.7 9.8a16 16 0 0 0 6.5 6.5l1.3-1.3a2 2 0 0 1 1.8-.6l3 .5A2 2 0 0 1 22 16.9Z"></path></svg>',
       '        <span id="topbar-phone-text">' + escapeHtml(site.topbar.phoneText) + '</span>',
       '      </a>',
-      '      <a class="topbar-item" id="topbar-whatsapp-link" href="' + escapeHtml(site.topbar.whatsappHref) + '">',
+      '      <a class="topbar-item" id="topbar-whatsapp-link" href="' + escapeHtml(normalizeWhatsAppHref(site.topbar.whatsappHref)) + '" target="_blank" rel="noopener noreferrer">',
       '        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 3.9A11 11 0 0 0 2.8 17.1L1.5 22.5l5.5-1.3A11 11 0 1 0 20 3.9Zm-8 16.2a9 9 0 0 1-4.6-1.3l-.3-.2-3.2.8.9-3.1-.2-.3A9 9 0 1 1 12 20.1Zm5-6.7c-.3-.2-1.8-.9-2.1-1s-.5-.2-.7.2-.8 1-1 1.1-.4.2-.7 0a7.4 7.4 0 0 1-2.2-1.3 8.4 8.4 0 0 1-1.6-2c-.2-.3 0-.5.1-.7l.5-.6c.1-.1.2-.3.3-.5a.6.6 0 0 0 0-.6c-.1-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6a1.1 1.1 0 0 0-.8.4 3.3 3.3 0 0 0-1 2.4c0 1.4 1 2.7 1.2 2.9.1.2 2 3 4.8 4.1 2.8 1.1 2.8.7 3.3.7.5 0 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.2-.3-.2-.6-.4Z"></path></svg>',
       '        <span id="topbar-whatsapp-text">' + escapeHtml(site.topbar.whatsappText) + '</span>',
       '      </a>',
@@ -575,7 +638,7 @@
       '        <p id="cta-text">' + escapeHtml(site.cta.text) + '</p>',
       '      </div>',
       '      <div class="cta-actions">',
-      '        <a class="btn-whatsapp" id="cta-whatsapp-link" href="' + escapeHtml(site.cta.whatsappHref) + '"><span id="cta-whatsapp-text">' + escapeHtml(site.cta.whatsappText) + '</span></a>',
+      '        <a class="btn-whatsapp" id="cta-whatsapp-link" href="' + escapeHtml(normalizeWhatsAppHref(site.cta.whatsappHref)) + '" target="_blank" rel="noopener noreferrer"><span id="cta-whatsapp-text">' + escapeHtml(site.cta.whatsappText) + '</span></a>',
       '        <a class="btn-phone" id="cta-phone-link" href="' + escapeHtml(site.cta.phoneHref) + '"><span id="cta-phone-text">' + escapeHtml(site.cta.phoneText) + '</span></a>',
       '      </div>',
       '    </div>',
@@ -699,6 +762,7 @@
     SITE_FILE_NAME: SITE_FILE_NAME,
     DEFAULT_SITE_DATA: DEFAULT_SITE_DATA,
     deepClone: deepClone,
+    normalizeWhatsAppHref: normalizeWhatsAppHref,
     normalizePrimaryMetaIcon: normalizePrimaryMetaIcon,
     getPrimaryMetaIconSvg: getPrimaryMetaIconSvg,
     loadSiteHtmlData: loadSiteHtmlData,

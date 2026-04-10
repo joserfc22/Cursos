@@ -16,6 +16,22 @@
     }
   }
 
+  function setWhatsAppLink(id, href, textId, textValue) {
+    var helpers = window.HospitalCoursesData || {};
+    var normalizedHref = helpers.normalizeWhatsAppHref ? helpers.normalizeWhatsAppHref(href) : href;
+    var link = document.getElementById(id);
+
+    if (link && normalizedHref) {
+      link.href = normalizedHref;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+    }
+
+    if (textId) {
+      setText(textId, textValue);
+    }
+  }
+
   function escapeHtml(value) {
     return String(value || '')
       .replace(/&/g, '&amp;')
@@ -140,7 +156,7 @@
 
     setText('topbar-address-text', data.topbar.address);
     setLink('topbar-phone-link', data.topbar.phoneHref, 'topbar-phone-text', data.topbar.phoneText);
-    setLink('topbar-whatsapp-link', data.topbar.whatsappHref, 'topbar-whatsapp-text', data.topbar.whatsappText);
+    setWhatsAppLink('topbar-whatsapp-link', data.topbar.whatsappHref, 'topbar-whatsapp-text', data.topbar.whatsappText);
 
     setLink('nav-cta-link', data.nav.buttonHref, 'nav-cta-text', data.nav.buttonText);
 
@@ -172,14 +188,14 @@
 
     setText('cta-title', data.cta.title);
     setText('cta-text', data.cta.text);
-    setLink('cta-whatsapp-link', data.cta.whatsappHref, 'cta-whatsapp-text', data.cta.whatsappText);
+    setWhatsAppLink('cta-whatsapp-link', data.cta.whatsappHref, 'cta-whatsapp-text', data.cta.whatsappText);
     setLink('cta-phone-link', data.cta.phoneHref, 'cta-phone-text', data.cta.phoneText);
 
     setText('footer-description', data.footer.description);
     setLink('footer-email-primary-link', 'mailto:' + data.footer.emailPrimary, 'footer-email-primary-text', data.footer.emailPrimary);
     setLink('footer-email-secondary-link', 'mailto:' + data.footer.emailSecondary, 'footer-email-secondary-text', data.footer.emailSecondary);
     setLink('footer-phone-link', data.footer.phoneHref, 'footer-phone-text', data.footer.phoneText);
-    setLink('footer-whatsapp-link', data.footer.whatsappHref, 'footer-whatsapp-text', data.footer.whatsappText);
+    setWhatsAppLink('footer-whatsapp-link', data.footer.whatsappHref, 'footer-whatsapp-text', data.footer.whatsappText);
     setText('footer-address-text', data.footer.address);
   }
 

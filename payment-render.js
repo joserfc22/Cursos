@@ -20,6 +20,22 @@
     }
   }
 
+  function setWhatsAppLink(id, href, textId, textValue) {
+    var helpers = window.HospitalCoursesData || {};
+    var normalizedHref = helpers.normalizeWhatsAppHref ? helpers.normalizeWhatsAppHref(href) : href;
+    var link = byId(id);
+
+    if (link && normalizedHref) {
+      link.href = normalizedHref;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+    }
+
+    if (textId) {
+      setText(textId, textValue);
+    }
+  }
+
   function getTextOrFallback(value, fallback) {
     return String(value || '').trim() || fallback || '';
   }
@@ -73,6 +89,7 @@
     var container = byId('payment-courses-grid');
     var dataHelpers = window.HospitalCoursesData || {};
     var selectedCourse = findSelectedCourse(cards, selectedSlug);
+    var resolvedWhatsAppHref = dataHelpers.normalizeWhatsAppHref ? dataHelpers.normalizeWhatsAppHref(whatsappHref) : whatsappHref;
 
     if (!container) {
       return selectedCourse;
@@ -106,7 +123,7 @@
         '  </div>',
         '  <div class="card-actions">',
         '    <a class="btn-inscricao" href="' + escapeHtml(resolveEnrollmentHref(slug)) + '">' + escapeHtml(card.buttonText || 'Fazer minha inscricao') + '</a>',
-        '    <a class="btn-info-curso" href="' + escapeHtml(whatsappHref || resolveSiteHref(card.buttonHref)) + '">Tirar duvidas no WhatsApp</a>',
+        '    <a class="btn-info-curso" href="' + escapeHtml(resolvedWhatsAppHref || resolveSiteHref(card.buttonHref)) + '"' + (resolvedWhatsAppHref ? ' target="_blank" rel="noopener noreferrer"' : '') + '>Tirar duvidas no WhatsApp</a>',
         '  </div>',
         '</div>'
       ].join('');
@@ -464,7 +481,7 @@
 
     setText('topbar-address-text', data.topbar.address);
     setLink('topbar-phone-link', data.topbar.phoneHref, 'topbar-phone-text', data.topbar.phoneText);
-    setLink('topbar-whatsapp-link', data.topbar.whatsappHref, 'topbar-whatsapp-text', data.topbar.whatsappText);
+    setWhatsAppLink('topbar-whatsapp-link', data.topbar.whatsappHref, 'topbar-whatsapp-text', data.topbar.whatsappText);
 
     setText('payment-hero-alert', getTextOrFallback(data.hero.alertText, baseData.hero && baseData.hero.alertText));
     setText('payment-label', getTextOrFallback(data.payment.label, baseData.payment && baseData.payment.label));
@@ -474,9 +491,9 @@
     setText('payment-certification-text', getTextOrFallback(data.payment.certificationText, baseData.payment && baseData.payment.certificationText));
     setText('footer-description', data.footer.description);
     setLink('footer-phone-link', data.footer.phoneHref, 'footer-phone-text', data.footer.phoneText);
-    setLink('footer-whatsapp-link', data.footer.whatsappHref, 'footer-whatsapp-text', data.footer.whatsappText);
+    setWhatsAppLink('footer-whatsapp-link', data.footer.whatsappHref, 'footer-whatsapp-text', data.footer.whatsappText);
     setText('footer-address-text', data.footer.address);
-    setLink('cta-whatsapp-link', data.cta.whatsappHref, 'cta-whatsapp-text', data.cta.whatsappText);
+    setWhatsAppLink('cta-whatsapp-link', data.cta.whatsappHref, 'cta-whatsapp-text', data.cta.whatsappText);
     setLink('cta-phone-link', data.cta.phoneHref, 'cta-phone-text', data.cta.phoneText);
 
     selectedCourse = renderCourseCards(data.cards, selectedSlug, data.topbar.whatsappHref);

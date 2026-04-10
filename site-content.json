@@ -4,7 +4,7 @@
     "phoneText": "(62) 99904-0297",
     "phoneHref": "tel:+5562999040297",
     "whatsappText": "WhatsApp",
-    "whatsappHref": "https://api.whatsapp.com/send?phone=5562999040297"
+    "whatsappHref": "https://wa.me/5562999040297"
   },
   "nav": {
     "buttonText": "Quero me inscrever",
@@ -118,7 +118,7 @@
     "title": "Quer reservar sua vaga ou tirar uma duvida?",
     "text": "Fale com a equipe para confirmar disponibilidade e receber orientacao sobre o curso ideal para voce.",
     "whatsappText": "WhatsApp (62) 99904-0297",
-    "whatsappHref": "https://api.whatsapp.com/send?phone=5562999040297",
+    "whatsappHref": "https://wa.me/5562999040297",
     "phoneText": "Ligar (62) 99904-0297",
     "phoneHref": "tel:+5562999040297"
   },
@@ -129,7 +129,7 @@
     "phoneText": "(62) 99904-0297",
     "phoneHref": "tel:+5562999040297",
     "whatsappText": "(62) 99904-0297",
-    "whatsappHref": "https://api.whatsapp.com/send?phone=5562999040297",
+    "whatsappHref": "https://wa.me/5562999040297",
     "address": "R. Paissandu, 220 - Ipiranga, Goiania"
   }
 }

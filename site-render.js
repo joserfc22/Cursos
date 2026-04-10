@@ -32,6 +32,22 @@
     }
   }
 
+  function setMapLink(id, address, textId) {
+    var helpers = window.HospitalCoursesData || {};
+    var normalizedHref = helpers.normalizeMapHref ? helpers.normalizeMapHref(address) : '#';
+    var link = document.getElementById(id);
+
+    if (link) {
+      link.href = normalizedHref;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+    }
+
+    if (textId) {
+      setText(textId, address);
+    }
+  }
+
   function escapeHtml(value) {
     return String(value || '')
       .replace(/&/g, '&amp;')
@@ -154,7 +170,7 @@
 
     var data = await window.HospitalCoursesData.loadSiteData();
 
-    setText('topbar-address-text', data.topbar.address);
+    setMapLink('topbar-address-link', data.topbar.address, 'topbar-address-text');
     setLink('topbar-phone-link', data.topbar.phoneHref, 'topbar-phone-text', data.topbar.phoneText);
     setWhatsAppLink('topbar-whatsapp-link', data.topbar.whatsappHref, 'topbar-whatsapp-text', data.topbar.whatsappText);
 
@@ -196,7 +212,7 @@
     setLink('footer-email-secondary-link', 'mailto:' + data.footer.emailSecondary, 'footer-email-secondary-text', data.footer.emailSecondary);
     setLink('footer-phone-link', data.footer.phoneHref, 'footer-phone-text', data.footer.phoneText);
     setWhatsAppLink('footer-whatsapp-link', data.footer.whatsappHref, 'footer-whatsapp-text', data.footer.whatsappText);
-    setText('footer-address-text', data.footer.address);
+    setMapLink('footer-address-link', data.footer.address, 'footer-address-text');
   }
 
   document.addEventListener('DOMContentLoaded', function () {

@@ -36,6 +36,22 @@
     }
   }
 
+  function setMapLink(id, address, textId) {
+    var helpers = window.HospitalCoursesData || {};
+    var normalizedHref = helpers.normalizeMapHref ? helpers.normalizeMapHref(address) : '#';
+    var link = byId(id);
+
+    if (link) {
+      link.href = normalizedHref;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+    }
+
+    if (textId) {
+      setText(textId, address);
+    }
+  }
+
   function getTextOrFallback(value, fallback) {
     return String(value || '').trim() || fallback || '';
   }
@@ -479,7 +495,7 @@
     var baseData = window.HospitalCoursesData.DEFAULT_SITE_DATA || {};
     var selectedCourse;
 
-    setText('topbar-address-text', data.topbar.address);
+    setMapLink('topbar-address-link', data.topbar.address, 'topbar-address-text');
     setLink('topbar-phone-link', data.topbar.phoneHref, 'topbar-phone-text', data.topbar.phoneText);
     setWhatsAppLink('topbar-whatsapp-link', data.topbar.whatsappHref, 'topbar-whatsapp-text', data.topbar.whatsappText);
 
@@ -492,7 +508,7 @@
     setText('footer-description', data.footer.description);
     setLink('footer-phone-link', data.footer.phoneHref, 'footer-phone-text', data.footer.phoneText);
     setWhatsAppLink('footer-whatsapp-link', data.footer.whatsappHref, 'footer-whatsapp-text', data.footer.whatsappText);
-    setText('footer-address-text', data.footer.address);
+    setMapLink('footer-address-link', data.footer.address, 'footer-address-text');
     setWhatsAppLink('cta-whatsapp-link', data.cta.whatsappHref, 'cta-whatsapp-text', data.cta.whatsappText);
     setLink('cta-phone-link', data.cta.phoneHref, 'cta-phone-text', data.cta.phoneText);
 

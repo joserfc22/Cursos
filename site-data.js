@@ -215,6 +215,16 @@
     return raw;
   }
 
+  function normalizeMapHref(value) {
+    var text = normalizeText(value);
+
+    if (!text) {
+      return '#';
+    }
+
+    return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(text);
+  }
+
   function normalizeSiteLinks(data) {
     var site = deepClone(data || {});
 
@@ -519,7 +529,7 @@
 
     items.push('          <li><a id="footer-phone-link" href="' + escapeHtml(footer.phoneHref) + '"><span id="footer-phone-text">' + escapeHtml(footer.phoneText) + '</span></a></li>');
     items.push('          <li><a id="footer-whatsapp-link" href="' + escapeHtml(normalizeWhatsAppHref(footer.whatsappHref)) + '" target="_blank" rel="noopener noreferrer"><span id="footer-whatsapp-text">' + escapeHtml(footer.whatsappText) + '</span></a></li>');
-    items.push('          <li><a href="#"><span id="footer-address-text">' + escapeHtml(footer.address) + '</span></a></li>');
+    items.push('          <li><a id="footer-address-link" href="' + escapeHtml(normalizeMapHref(footer.address)) + '" target="_blank" rel="noopener noreferrer"><span id="footer-address-text">' + escapeHtml(footer.address) + '</span></a></li>');
 
     return items.join('\n');
   }
@@ -540,10 +550,10 @@
       '</head>',
       '<body id="top">',
       '  <div class="topbar">',
-      '    <span class="topbar-item">',
+      '    <a class="topbar-item" id="topbar-address-link" href="' + escapeHtml(normalizeMapHref(site.topbar.address)) + '" target="_blank" rel="noopener noreferrer">',
       '      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s7-6.2 7-11.2A7 7 0 0 0 5 9.8C5 14.8 12 21 12 21Z"></path><circle cx="12" cy="10" r="2.6"></circle></svg>',
       '      <span id="topbar-address-text">' + escapeHtml(site.topbar.address) + '</span>',
-      '    </span>',
+      '    </a>',
       '    <div>',
       '      <a class="topbar-item" id="topbar-phone-link" href="' + escapeHtml(site.topbar.phoneHref) + '">',
       '        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7l.5 3a2 2 0 0 1-.6 1.8L7.7 9.8a16 16 0 0 0 6.5 6.5l1.3-1.3a2 2 0 0 1 1.8-.6l3 .5A2 2 0 0 1 22 16.9Z"></path></svg>',
@@ -763,6 +773,7 @@
     SITE_FILE_NAME: SITE_FILE_NAME,
     DEFAULT_SITE_DATA: DEFAULT_SITE_DATA,
     deepClone: deepClone,
+    normalizeMapHref: normalizeMapHref,
     normalizeWhatsAppHref: normalizeWhatsAppHref,
     normalizePrimaryMetaIcon: normalizePrimaryMetaIcon,
     getPrimaryMetaIconSvg: getPrimaryMetaIconSvg,

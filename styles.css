@@ -171,20 +171,31 @@ nav .logo-icon img {
 }
 
 .payment-hero::before {
-  width: 520px;
-  height: 520px;
-  top: -120px;
-  right: -120px;
-  background: rgba(241, 194, 125, 0.12);
+  content: '';
+  position: absolute;
+  inset: 0;
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle at 900px 115px, rgba(241, 194, 125, 0.12) 0 210px, transparent 211px);
+  background-repeat: repeat-x;
+  background-size: 1060px 100%;
+  animation: paymentOrbDriftTop 92s linear infinite;
 }
 
 .payment-hero::after {
-  left: auto;
-  right: 18%;
-  bottom: -160px;
-  width: 640px;
-  height: 640px;
-  background: rgba(255, 255, 255, 0.04);
+  content: '';
+  position: absolute;
+  inset: 0;
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle at 520px 76%, rgba(255, 255, 255, 0.04) 0 290px, transparent 291px);
+  background-repeat: repeat-x;
+  background-size: 1180px 100%;
+  animation: paymentOrbDriftBottom 118s linear infinite;
 }
 
 .hero::before {
@@ -207,6 +218,73 @@ nav .logo-icon img {
   height: 560px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.05);
+}
+
+@keyframes heroOrbDriftTop {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: 980px;
+  }
+}
+
+@keyframes heroOrbDriftBottom {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: 1120px;
+  }
+}
+
+@keyframes paymentOrbDriftTop {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: 1060px;
+  }
+}
+
+@keyframes paymentOrbDriftBottom {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: 1180px;
+  }
+}
+
+.hero:not(.payment-hero)::before,
+.hero:not(.payment-hero)::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero:not(.payment-hero)::before {
+  background-image: radial-gradient(circle at 820px 110px, rgba(198, 40, 57, 0.12) 0 205px, transparent 206px);
+  background-repeat: repeat-x;
+  background-size: 980px 100%;
+  animation: heroOrbDriftTop 82s linear infinite;
+}
+
+.hero:not(.payment-hero)::after {
+  background-image: radial-gradient(circle at 420px 76%, rgba(255, 255, 255, 0.05) 0 280px, transparent 281px);
+  background-repeat: repeat-x;
+  background-size: 1120px 100%;
+  animation: heroOrbDriftBottom 104s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .payment-hero::before,
+  .payment-hero::after,
+  .hero:not(.payment-hero)::before,
+  .hero:not(.payment-hero)::after {
+    animation: none;
+  }
 }
 
 .hero-inner {
@@ -431,6 +509,54 @@ nav .logo-icon img {
   max-width: 1200px;
   margin: 0 auto;
   padding: 72px 60px;
+}
+
+#turmas {
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+}
+
+#turmas::before,
+#turmas::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  filter: blur(14px);
+  opacity: 0.8;
+}
+
+#turmas::before {
+  top: 70px;
+  left: -180px;
+  width: 460px;
+  height: 460px;
+  border-radius: 54% 46% 58% 42% / 45% 58% 42% 55%;
+  background:
+    radial-gradient(circle at 35% 35%, rgba(198, 40, 57, 0.28) 0 34%, rgba(198, 40, 57, 0.16) 35% 62%, transparent 63%),
+    radial-gradient(circle at 70% 68%, rgba(159, 31, 45, 0.2) 0 26%, transparent 27%);
+  transform: rotate(-16deg);
+}
+
+#turmas::after {
+  right: -150px;
+  bottom: -10px;
+  width: 400px;
+  height: 400px;
+  border-radius: 42% 58% 44% 56% / 58% 42% 60% 40%;
+  background:
+    radial-gradient(circle at 42% 42%, rgba(198, 40, 57, 0.24) 0 36%, rgba(198, 40, 57, 0.12) 37% 66%, transparent 67%),
+    radial-gradient(circle at 68% 28%, rgba(198, 40, 57, 0.16) 0 20%, transparent 21%);
+  transform: rotate(14deg);
+}
+
+#turmas .section-label,
+#turmas .section-title,
+#turmas .section-sub,
+#turmas .courses-grid {
+  position: relative;
+  z-index: 1;
 }
 
 .section-label {
